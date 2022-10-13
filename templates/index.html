@@ -14,18 +14,40 @@
 </head>
 
 <body class="d-flex h-100 text-center text-bg-dark">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column my-5">
 
         <main class="px-3">
             <figure class="text-center">
-                <blockquote class="blockquote" style="font-size:3rem">
+                <blockquote class="blockquote" style="font-size:2.5rem">
                     <p>{{ quote }}</p>
                 </blockquote>
                 <figcaption class="blockquote-footer">
-                    <a href="https://cpl.vupti.me" class="text-white">C'est pas le… – Générateur</a>
+                    C'est pas le… – Générateur
                 </figcaption>
             </figure>
         </main>
+
+        <p class="my-5">
+            <a class="btn btn-primary mx-2" type="button" tabindex="1" role="button" href="/" title="Recharger pour obtenir une nouvelle citation">
+                Une autre !
+            </a>
+            <button class="btn btn-outline-light mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Plus d'infos
+            </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card text-bg-light border-info mx-5">
+                <div class="card-header">Quelques informations</div>
+                <div class="card-body text-start">
+                    <p>
+                        Ce générateur de citations aléatoires <em>"C'est pas le…"</em> est un projet open-source. Vous pouvez le retrouver sur
+                        <a href="https://github.com/lrivallain/cestpasle_generator" target="_blank">Github</a> et y contribuer.
+                    </p>
+                    <p>Il est aussi possible d'obtenir un résultat au format texte en utilisant un chemin d'URL spécifique: <code><a href="/plain" target="_blank">/plain</a></code>.</p>
+                    <p>Pour les amateurs de ligne de commande: <code>curl https://cpl.vupti.me/plain</code></p>
+                </div>
+            </div>
+        </div>
 
         <footer class="mt-auto mx-4 text-white-50 navbar fixed-bottom">
             <p>Source code: <a href="https://github.com/lrivallain/cestpasle_generator" target="_blank"
