@@ -6,7 +6,7 @@ A simple random quote generator
 
 # Usage
 
-* Option 1: visit [pl.vupti.me](https://cpl.vupti.me/)
+* Option 1: visit [cpl.vupti.me](https://cpl.vupti.me/)
 * Use `curl`
 
 ```bash
