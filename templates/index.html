@@ -25,7 +25,7 @@
     <main class="px-3">
       <figure class="text-center">
         <blockquote class="blockquote" style="font-size:2.5rem">
-          <p>{{ quote }}</p>
+          <p id="quote">{{ quote }}</p>
         </blockquote>
         <figcaption class="blockquote-footer">
           C'est pas le… – Générateur
@@ -34,6 +34,12 @@
     </main>
 
     <p class="my-5">
+      <a class="btn btn-success mx-2 pop-copy" type="button" tabindex="0"
+        data-bs-toggle="popover" data-bs-content="La citation a été copiée dans le presse-papier."
+        data-bs-placement="top"
+        onclick="copyTextToClipboard(document.getElementById('quote').textContent);">
+        <i class="bi bi-clipboard-check"></i>
+      </a>
       <a class="btn btn-primary mx-2" type="button" tabindex="1" role="button" href="/"
         title="Recharger pour obtenir une nouvelle citation">
         <i class="bi bi-arrow-clockwise"></i> Une autre !
@@ -73,7 +79,7 @@
             class="text-white">Github</a>
       </p>
       <p>
-        <i class="bi bi-bootstrap"></i> <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>.
+        <i class="bi bi-bootstrap"></i> <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>
       </p>
     </footer>
   </div>
@@ -83,6 +89,52 @@
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
     crossorigin="anonymous">
+  </script>
+  <script>
+    // initialize popover for Copy on Clipboard button
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+
+    // copy text to clipboard - failback method
+    function fallbackCopyTextToClipboard(text) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+
+        // Avoid scrolling to bottom
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Fallback: Copying text command was ' + msg);
+        } catch (err) {
+            console.error('Fallback: Oops, unable to copy', err);
+        }
+        document.body.removeChild(textArea);
+    }
+
+    // copy text to clipboard
+    function copyTextToClipboard(text) {
+        if (!navigator.clipboard) {
+            fallbackCopyTextToClipboard(text);
+        } else {
+            navigator.clipboard.writeText(text).then(function() {
+                console.log('Async: Copying to clipboard was successful!');
+            }, function(err) {
+                console.error('Async: Could not copy text: ', err);
+            });
+        }
+        // hide popover
+        setTimeout(function() {
+            popoverList[0].hide();
+        }, 2000);
+    }
   </script>
 </body>
 </html>

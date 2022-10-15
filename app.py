@@ -15,7 +15,7 @@ def get_quote():
     """
     with open("data/quotes.txt", "r", encoding="utf-8") as file:
         quotes = file.readlines()
-    return random.choice(quotes)
+    return random.choice(quotes).strip()
 
 @app.route('/')
 @app.route('/html')
